@@ -1,3 +1,16 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/core-web-vitals",
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:tailwindcss/recommended"
+  ],
+  "parserOptions": {
+    "project": "tsconfig.json"
+  },
+  "rules": {
+    "tailwindcss/classname-order": "off",
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/naming-convention": "warning"
+  }
 }

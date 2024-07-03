@@ -1,7 +1,9 @@
-import { Inter } from 'next/font/google';
-import type { Metadata } from 'next';
+import '@/styles/globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+import type { Metadata } from 'next';
+import { Noto_Sans_KR } from 'next/font/google';
+
+const notoSansKR = Noto_Sans_KR({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'WAKe',
@@ -15,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={inter.className}>{children}</body>
+      <body className={notoSansKR.className}>{children}</body>
     </html>
   );
 }
