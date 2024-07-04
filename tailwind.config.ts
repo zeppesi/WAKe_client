@@ -19,6 +19,7 @@ const config: Config = {
       minWidth: px0_1200,
       minHeight: px0_1200,
       spacing: px0_1200,
+      borderRadius: px0_1200,
     },
   },
   plugins: [],

@@ -1,0 +1,3 @@
+.cta {
+  @apply flex items-center bg-primary text-white active:scale-95;
+}

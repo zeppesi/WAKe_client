@@ -1,0 +1,3 @@
+.btn {
+  @apply rounded-32 h-68 w-160 justify-center;
+}
