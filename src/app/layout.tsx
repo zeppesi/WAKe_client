@@ -1,9 +1,7 @@
 import '@/styles/globals.css';
 
 import type { Metadata } from 'next';
-import { Noto_Sans_KR } from 'next/font/google';
-
-const notoSansKR = Noto_Sans_KR({ subsets: ['latin'] });
+import { notoSansKR } from '@/styles/fonts';
 
 export const metadata: Metadata = {
   title: 'WAKe',
