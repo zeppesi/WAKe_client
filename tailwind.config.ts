@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss';
 
-const px0_200 = Array.from(Array(201)).reduce((prev, _, i) => {
+const px0_1200 = Array.from(Array(1201)).reduce((prev, _, i) => {
   prev[i] = `${i}px`;
   return prev;
 }, {});
@@ -13,13 +13,12 @@ const config: Config = {
         black: '#222222',
         primary: '#00E507',
       },
-
-      borderWidth: px0_200,
-      fontSize: px0_200,
-      lineHeight: px0_200,
-      minWidth: px0_200,
-      minHeight: px0_200,
-      spacing: px0_200,
+      borderWidth: px0_1200,
+      fontSize: px0_1200,
+      lineHeight: px0_1200,
+      minWidth: px0_1200,
+      minHeight: px0_1200,
+      spacing: px0_1200,
     },
   },
   plugins: [],
