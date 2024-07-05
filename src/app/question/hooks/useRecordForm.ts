@@ -1,13 +1,22 @@
 import { USERNAMES } from '@/constants';
+import { useQuestion } from './useQuestion';
 import { useState } from 'react';
 import { useTimer } from './useTimer';
 import { useToast } from '@/components/ui/use-toast';
 
 export const INPUT_MAX_LENGTH = 100;
 
+// TODO: refactor
 export const useRecordForm = () => {
-  const { setIsActive, remainingSeconds, scheduleSetInactive, isTimerEnd } =
-    useTimer();
+  const { question, fetchNewQuestion } = useQuestion();
+
+  const {
+    setIsActive,
+    remainingSeconds,
+    resetRemainingSeconds,
+    scheduleSetInactive,
+    isTimerEnd,
+  } = useTimer();
 
   const { toast } = useToast();
 
@@ -15,6 +24,17 @@ export const useRecordForm = () => {
   const [username, setUsername] = useState<(typeof USERNAMES)[number]>(
     USERNAMES[0],
   );
+
+  const resetForm = () => {
+    resetRemainingSeconds();
+    setIsActive(false);
+    setInput('');
+  };
+
+  const getNewQuestion = () => {
+    fetchNewQuestion();
+    resetForm();
+  };
 
   const handleInputFocus = () => {
     setIsActive(true);
@@ -41,9 +61,12 @@ export const useRecordForm = () => {
     toast({
       description: '기록 완료!',
     });
+    getNewQuestion();
   };
 
   return {
+    question,
+    getNewQuestion,
     remainingSeconds,
     isTimerEnd,
     input,

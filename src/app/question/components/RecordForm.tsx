@@ -11,6 +11,8 @@ import styles from '../page.module.css';
 
 const RecordForm = () => {
   const {
+    question,
+    getNewQuestion,
     remainingSeconds,
     isTimerEnd,
     input,
@@ -26,10 +28,8 @@ const RecordForm = () => {
 
   return (
     <>
-      <p className="mb-24 text-center text-28 font-semibold">
-        지금 바로 생각나는
-        <br />
-        단어는 무엇인가요?
+      <p className="mb-24 whitespace-pre-line text-center text-28 font-semibold">
+        {question}
       </p>
 
       <button
@@ -37,6 +37,7 @@ const RecordForm = () => {
           commonStyles.cta,
           'h-52 w-180 justify-center rounded-32 text-20 font-bold active:scale-95',
         )}
+        onClick={getNewQuestion}
       >
         다른 질문 받기
       </button>
