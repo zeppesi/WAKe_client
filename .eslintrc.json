@@ -6,9 +6,9 @@
     "plugin:tailwindcss/recommended"
   ],
   "parserOptions": {
-    "project": "tsconfig.json",
-    "exclude": ["<tsconfigRootDir>/postcss.config.mjs"]
+    "project": "tsconfig.json"
   },
+  "ignorePatterns": ["postcss.config.mjs", "src/components/ui"],
   "rules": {
     "tailwindcss/classname-order": "off",
     "react/react-in-jsx-scope": "off",
