@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 
 const INITIAL_REMAINING_SECONDS = 10;
+const INACTIVE_THRESHOLD_SECONDS = 1;
+export const INPUT_MAX_LENGTH = 100;
 
 export const useQuestionForm = () => {
   const [isActive, setIsActive] = useState<boolean>(false);
@@ -38,15 +40,16 @@ export const useQuestionForm = () => {
     debounceRef.current = setTimeout(() => {
       decreaseRemainingSeconds();
       setIsActive(false);
-    }, 1000);
+    }, INACTIVE_THRESHOLD_SECONDS * 1000);
   };
 
   const handleInputFocus = () => {
     setIsActive(true);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInput(e.target.value);
+    setIsActive(true);
     scheduleSetInactive();
   };
 

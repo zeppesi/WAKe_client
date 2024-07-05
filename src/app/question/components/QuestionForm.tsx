@@ -1,5 +1,6 @@
 'use client';
 
+import { INPUT_MAX_LENGTH, useQuestionForm } from '../hooks/useQuestionForm';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/RadioGroup';
 
 import { cn } from '@/styles/utils';
@@ -9,6 +10,17 @@ import styles from '../page.module.css';
 const USERNAMES = ['지영', '지현', '홍철'];
 
 const QuestionForm = () => {
+  const {
+    remainingSeconds,
+    input,
+    isTimerEnd,
+    handleInputFocus,
+    handleInputChange,
+    handleInputBlur,
+  } = useQuestionForm();
+
+  const exceedsMaxLength = input.length > INPUT_MAX_LENGTH;
+
   return (
     <>
       <p className="mb-24 text-center text-28 font-semibold">
@@ -27,12 +39,23 @@ const QuestionForm = () => {
       </button>
 
       <div className="mt-28 flex w-full max-w-400 flex-col gap-4">
-        <textarea className="h-160 w-full resize-none rounded-20 border-1 border-black px-16 py-12 focus:border-primary focus:caret-primary" />
-        <span className="self-end">n/100</span>
+        <textarea
+          className={cn(
+            'h-160 w-full resize-none rounded-20 border-1 border-black px-16 py-12 caret-primary focus:border-primary',
+            exceedsMaxLength && 'focus:border-red focus:outline-red caret-red',
+          )}
+          value={input}
+          onFocus={handleInputFocus}
+          onChange={handleInputChange}
+          onBlur={handleInputBlur}
+        />
+        <span className={cn('self-end', exceedsMaxLength && 'text-red')}>
+          {input.length}/{INPUT_MAX_LENGTH}
+        </span>
       </div>
 
-      <div className="bg-gray mb-20 mt-16 flex h-60 w-full max-w-400 items-center justify-center rounded-12 text-28 font-extrabold text-[#F00808]">
-        10
+      <div className="bg-gray text-red mb-20 mt-16 flex h-60 w-full max-w-400 items-center justify-center rounded-12 text-28 font-extrabold">
+        {isTimerEnd ? '지금 떠오른 그 단어를 던져요' : remainingSeconds}
       </div>
 
       <RadioGroup
