@@ -3,11 +3,10 @@
 import { INPUT_MAX_LENGTH, useRecordForm } from '../hooks/useRecordForm';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/RadioGroup';
 
+import { USERNAMES } from '@/constants';
 import { cn } from '@/styles/utils';
 import commonStyles from '@/styles/common.module.css';
 import styles from '../page.module.css';
-
-const USERNAMES = ['지영', '지현', '홍철'];
 
 const RecordForm = () => {
   const {
@@ -17,6 +16,8 @@ const RecordForm = () => {
     handleInputFocus,
     handleInputChange,
     handleInputBlur,
+    username,
+    setUsername,
   } = useRecordForm();
 
   const exceedsMaxLength = input.length > INPUT_MAX_LENGTH;
@@ -59,15 +60,19 @@ const RecordForm = () => {
       </div>
 
       <RadioGroup
-        defaultValue={USERNAMES[0]}
         className="flex items-center gap-16"
+        defaultValue={USERNAMES[0]}
+        value={username}
+        onValueChange={username =>
+          setUsername(username as (typeof USERNAMES)[number])
+        }
       >
         {USERNAMES.map(username => (
           <div key={username} className={styles.username}>
             <RadioGroupItem
               id={username}
-              value={username}
               className="h-16 w-16 border-black text-black"
+              value={username}
             />
             <label htmlFor={username} className="cursor-pointer">
               {username}

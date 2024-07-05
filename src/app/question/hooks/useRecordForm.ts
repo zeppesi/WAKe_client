@@ -1,3 +1,4 @@
+import { USERNAMES } from '@/constants';
 import { useState } from 'react';
 import { useTimer } from './useTimer';
 
@@ -8,6 +9,9 @@ export const useRecordForm = () => {
     useTimer();
 
   const [input, setInput] = useState<string>('');
+  const [username, setUsername] = useState<(typeof USERNAMES)[number]>(
+    USERNAMES[0],
+  );
 
   const handleInputFocus = () => {
     setIsActive(true);
@@ -30,5 +34,7 @@ export const useRecordForm = () => {
     handleInputFocus,
     handleInputChange,
     handleInputBlur,
+    username,
+    setUsername,
   };
 };
