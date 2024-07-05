@@ -1,8 +1,9 @@
 'use client';
 
 import { INPUT_MAX_LENGTH, useRecordForm } from '../hooks/useRecordForm';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/RadioGroup';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radioGroup';
 
+import { Toaster } from '@/components/ui/toaster';
 import { USERNAMES } from '@/constants';
 import { cn } from '@/styles/utils';
 import commonStyles from '@/styles/common.module.css';
@@ -16,6 +17,7 @@ const RecordForm = () => {
     handleInputFocus,
     handleInputChange,
     handleInputBlur,
+    handleSubmit,
     username,
     setUsername,
   } = useRecordForm();
@@ -43,7 +45,7 @@ const RecordForm = () => {
         <textarea
           className={cn(
             'h-160 w-full resize-none rounded-20 border-1 border-black px-16 py-12 caret-primary focus:border-primary',
-            exceedsMaxLength && 'focus:border-red focus:outline-red caret-red',
+            exceedsMaxLength && 'caret-red focus:border-red focus:outline-red',
           )}
           value={input}
           onFocus={handleInputFocus}
@@ -55,7 +57,7 @@ const RecordForm = () => {
         </span>
       </div>
 
-      <div className="bg-gray text-red mb-20 mt-16 flex h-60 w-full max-w-400 items-center justify-center rounded-12 text-28 font-extrabold">
+      <div className="mb-20 mt-16 flex w-full max-w-400 items-center justify-center rounded-12 bg-gray px-12 py-8 text-28 font-extrabold text-red">
         {isTimerEnd ? '지금 떠오른 그 단어를 던져요' : remainingSeconds}
       </div>
 
@@ -83,7 +85,7 @@ const RecordForm = () => {
 
       <footer
         className={
-          'border-gray fixed bottom-0 flex h-80 w-full items-center justify-center border-t bg-white px-40'
+          'fixed bottom-0 flex h-80 w-full items-center justify-center border-t border-gray bg-white px-40'
         }
       >
         <button
@@ -91,10 +93,13 @@ const RecordForm = () => {
             commonStyles.cta,
             'h-56 w-full max-w-360 justify-center rounded-12 text-24 font-bold',
           )}
+          onClick={handleSubmit}
         >
           기록하기
         </button>
       </footer>
+
+      <Toaster />
     </>
   );
 };
