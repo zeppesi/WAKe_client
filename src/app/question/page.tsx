@@ -1,4 +1,4 @@
-import QuestionForm from './components/QuestionForm';
+import RecordForm from './components/RecordForm';
 import { cn } from '@/styles/utils';
 import { poppins } from '@/styles/fonts';
 
@@ -13,7 +13,7 @@ const Question = () => {
       >
         WAKe
       </h1>
-      <QuestionForm />
+      <RecordForm />
     </main>
   );
 };

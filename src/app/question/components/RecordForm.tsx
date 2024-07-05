@@ -1,6 +1,6 @@
 'use client';
 
-import { INPUT_MAX_LENGTH, useQuestionForm } from '../hooks/useQuestionForm';
+import { INPUT_MAX_LENGTH, useRecordForm } from '../hooks/useRecordForm';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/RadioGroup';
 
 import { cn } from '@/styles/utils';
@@ -9,15 +9,15 @@ import styles from '../page.module.css';
 
 const USERNAMES = ['지영', '지현', '홍철'];
 
-const QuestionForm = () => {
+const RecordForm = () => {
   const {
     remainingSeconds,
-    input,
     isTimerEnd,
+    input,
     handleInputFocus,
     handleInputChange,
     handleInputBlur,
-  } = useQuestionForm();
+  } = useRecordForm();
 
   const exceedsMaxLength = input.length > INPUT_MAX_LENGTH;
 
@@ -94,4 +94,4 @@ const QuestionForm = () => {
   );
 };
 
-export default QuestionForm;
+export default RecordForm;
