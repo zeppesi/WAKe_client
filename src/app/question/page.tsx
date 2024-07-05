@@ -1,3 +1,4 @@
+import Header from './components/Header';
 import RecordForm from './components/RecordForm';
 import { cn } from '@/styles/utils';
 import { poppins } from '@/styles/fonts';
@@ -5,6 +6,7 @@ import { poppins } from '@/styles/fonts';
 const Question = () => {
   return (
     <main className="flex flex-col items-center p-24 pb-104">
+      <Header />
       <h1
         className={cn(
           poppins.className,
