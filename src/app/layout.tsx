@@ -1,7 +1,9 @@
 import '@/styles/globals.css';
 
 import type { Metadata } from 'next';
+import { cn } from '@/styles/utils';
 import { notoSansKR } from '@/styles/fonts';
+import styles from '@/styles/common.module.css';
 
 export const metadata: Metadata = {
   title: 'WAKe',
@@ -16,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={notoSansKR.className}>
-        <div className="max-w-1200 mx-auto">{children}</div>
+        <div className={cn(styles.layoutWidth, 'mx-auto')}>{children}</div>
       </body>
     </html>
   );
