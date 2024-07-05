@@ -74,7 +74,7 @@ const RecordForm = () => {
           <div key={username} className={styles.username}>
             <RadioGroupItem
               id={username}
-              className="h-16 w-16 border-black text-black"
+              className="size-16 border-black text-black"
               value={username}
             />
             <label htmlFor={username} className="cursor-pointer">
@@ -84,11 +84,7 @@ const RecordForm = () => {
         ))}
       </RadioGroup>
 
-      <footer
-        className={
-          'fixed bottom-0 flex h-80 w-full items-center justify-center border-t border-gray bg-white px-40'
-        }
-      >
+      <footer className="fixed bottom-0 flex h-80 w-full items-center justify-center border-t border-gray bg-white px-40">
         <button
           className={cn(
             commonStyles.cta,
