@@ -1,0 +1,7 @@
+.layoutWidth {
+  @apply max-w-1200;
+}
+
+.cta {
+  @apply flex items-center bg-primary text-white;
+}

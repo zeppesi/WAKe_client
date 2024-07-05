@@ -8,9 +8,28 @@
   "parserOptions": {
     "project": "tsconfig.json"
   },
+  "ignorePatterns": ["postcss.config.mjs", "src/components/ui"],
   "rules": {
     "tailwindcss/classname-order": "off",
     "react/react-in-jsx-scope": "off",
-    "@typescript-eslint/naming-convention": "warning"
+    "@typescript-eslint/naming-convention": "warn",
+    "arrow-parens": "off",
+    "import/order": "warn",
+    "react/function-component-definition": "off",
+    "arrow-body-style": "warn",
+    "@typescript-eslint/indent": "off",
+    "react/button-has-type": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "@typescript-eslint/no-shadow": "warn",
+    "implicit-arrow-linebreak": "off",
+    "react/jsx-curly-newline": "off",
+    "import/prefer-default-export": "off",
+    "function-paren-newline": "off",
+    "consistent-return": "warn",
+    "react/jsx-props-no-spreading": "off",
+    "object-curly-newline": "off",
+    "@typescript-eslint/no-use-before-define": "warn",
+    "default-case": "warn",
+    "no-confusing-arrow": "off"
   }
 }

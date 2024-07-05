@@ -1,9 +1,9 @@
 import '@/styles/globals.css';
 
 import type { Metadata } from 'next';
-import { Noto_Sans_KR } from 'next/font/google';
-
-const notoSansKR = Noto_Sans_KR({ subsets: ['latin'] });
+import { cn } from '@/styles/utils';
+import { notoSansKR } from '@/styles/fonts';
+import styles from '@/styles/common.module.css';
 
 export const metadata: Metadata = {
   title: 'WAKe',
@@ -17,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={notoSansKR.className}>{children}</body>
+      <body className={notoSansKR.className}>
+        <div className={cn(styles.layoutWidth, 'mx-auto')}>{children}</div>
+      </body>
     </html>
   );
 }
