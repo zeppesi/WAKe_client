@@ -15,6 +15,7 @@ const config = {
       colors: {
         black: '#222222',
         primary: '#00E507',
+        gray: '#eaeaea',
       },
       borderWidth: px0_1200,
       fontSize: px0_1200,
