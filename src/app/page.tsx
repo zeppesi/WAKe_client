@@ -2,8 +2,8 @@ import Link from 'next/link';
 import Play from '@/assets/svgs/play.svg';
 import { cn } from '@/styles/utils';
 import commonStyles from '@/styles/common.module.css';
-import homeStyles from './page.module.css';
 import { poppins } from '@/styles/fonts';
+import styles from './page.module.css';
 
 const Home = () => (
   <main className="flex flex-col items-center p-24">
@@ -27,7 +27,7 @@ const Home = () => (
         href="/question"
         className={cn(
           commonStyles.cta,
-          homeStyles.btn,
+          styles.btn,
           'gap-4 text-30 font-extrabold active:scale-95',
         )}
       >
@@ -39,7 +39,7 @@ const Home = () => (
         href="/records"
         className={cn(
           commonStyles.cta,
-          homeStyles.btn,
+          styles.btn,
           'text-24 font-bold active:scale-95',
         )}
       >
