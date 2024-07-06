@@ -4,9 +4,7 @@ import { cn } from '@/styles/utils';
 import styles from '@/styles/common.module.css';
 
 const Header = () => (
-  <header
-    className={cn(styles.header, 'fixed top-0 w-full max-w-400 bg-white')}
-  >
+  <header className={cn(styles.header, 'fixed top-0 w-full bg-white')}>
     <Link href="/records">
       <Box width={36} height={36} />
     </Link>
