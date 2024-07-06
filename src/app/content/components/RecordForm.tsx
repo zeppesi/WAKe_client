@@ -8,24 +8,36 @@ import { USERNAMES } from '@/constants';
 import { cn } from '@/styles/utils';
 import commonStyles from '@/styles/common.module.css';
 import styles from '../page.module.css';
+import { useContent } from '../hooks/useContent';
 
 const RecordForm = () => {
+  const { content, fetchNewContent } = useContent();
+
   const {
-    content,
-    getNewContent,
+    input,
+    username,
+    setUsername,
     remainingSeconds,
     isTimerEnd,
-    input,
+    exceedsMaxLength,
     handleInputFocus,
     handleInputChange,
     handleInputBlur,
-    handleSubmit,
-    username,
-    setUsername,
+    submitForm,
+    resetForm,
   } = useRecordForm();
 
-  const exceedsMaxLength = input.length > INPUT_MAX_LENGTH;
+  const handleNewContent = async () => {
+    await fetchNewContent();
+    resetForm();
+  };
 
+  const handleSubmit = async () => {
+    await submitForm(content?.id ?? -1);
+    await handleNewContent();
+  };
+
+  // TODO: refactor
   return (
     <>
       <p className="mb-24 whitespace-pre-line text-center text-28 font-semibold">
@@ -37,7 +49,7 @@ const RecordForm = () => {
           commonStyles.cta,
           'h-52 w-180 justify-center rounded-32 text-20 font-bold active:scale-95',
         )}
-        onClick={getNewContent}
+        onClick={handleNewContent}
       >
         다른 질문 받기
       </button>

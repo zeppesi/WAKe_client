@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 
 export const useContent = () => {
   const idRef = useRef<number | undefined>(undefined);
-  const initialFetchDoneRef = useRef<boolean>(false);
+  const isFirstFetchDoneRef = useRef<boolean>(false);
 
   const { data, refetch } = useQuery<Content>({
     queryKey: ['content', idRef.current],
@@ -16,12 +16,12 @@ export const useContent = () => {
       });
       return res.data;
     },
-    enabled: !initialFetchDoneRef.current,
+    enabled: !isFirstFetchDoneRef.current,
   });
 
   useEffect(() => {
     if (!data) return;
-    initialFetchDoneRef.current = true;
+    isFirstFetchDoneRef.current = true;
     idRef.current = data.id;
   }, [data]);
 

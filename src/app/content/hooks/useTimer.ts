@@ -68,8 +68,8 @@ export const useTimer = () => {
   return {
     setIsActive,
     remainingSeconds,
+    isTimerEnd,
     resetRemainingSeconds,
     scheduleSetInactive,
-    isTimerEnd,
   };
 };
