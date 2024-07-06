@@ -3,12 +3,12 @@ import { useEffect, useRef } from 'react';
 import api from '@/api';
 import { useQuery } from '@tanstack/react-query';
 
-export const useRandomContentQuery = () => {
+export const useContentQuery = () => {
   const contentIdRef = useRef<number | undefined>(undefined);
   const initialFetchDoneRef = useRef<boolean>(false);
 
   const { data, refetch } = useQuery<{ id: number; text: string }>({
-    queryKey: ['randomContent', contentIdRef.current],
+    queryKey: ['content', contentIdRef.current],
     queryFn: async () => {
       const res = await api('/contents/random', {
         params: { prev: contentIdRef.current },

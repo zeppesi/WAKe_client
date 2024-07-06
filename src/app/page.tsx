@@ -24,7 +24,7 @@ const Home = () => (
 
     <div className="flex flex-col gap-20">
       <Link
-        href="/question"
+        href="/content"
         className={cn(
           commonStyles.cta,
           styles.btn,

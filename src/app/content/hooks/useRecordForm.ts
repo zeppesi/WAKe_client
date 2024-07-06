@@ -1,5 +1,5 @@
 import { USERNAMES } from '@/constants';
-import { useRandomContentQuery } from './useRandomContentQuery';
+import { useContentQuery } from './useContentQuery';
 import { useState } from 'react';
 import { useTimer } from './useTimer';
 import { useToast } from '@/components/ui/use-toast';
@@ -13,7 +13,7 @@ export const useRecordForm = () => {
     USERNAMES[0],
   );
 
-  const { content, fetchNewContent } = useRandomContentQuery();
+  const { content, fetchNewContent } = useContentQuery();
 
   const {
     setIsActive,

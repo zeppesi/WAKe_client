@@ -6,7 +6,7 @@ import Left from '@/assets/svgs/left.svg';
 import Right from '@/assets/svgs/right.svg';
 import { USERNAMES } from '@/constants';
 import { cn } from '@/styles/utils';
-import questionStyles from '../../question/page.module.css';
+import contentStyles from '../../content/page.module.css';
 import styles from '../page.module.css';
 import { useAtom } from 'jotai';
 import { useCalendar } from '../hooks/useCalendar';
@@ -45,7 +45,7 @@ const Calendar = () => {
           }
         >
           {USERNAMES.map(username => (
-            <div key={username} className={questionStyles.username}>
+            <div key={username} className={contentStyles.username}>
               <RadioGroupItem
                 id={username}
                 className="size-16 border-black text-black"
