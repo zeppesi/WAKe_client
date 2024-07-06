@@ -4,15 +4,15 @@ import { Content } from '@/types';
 import api from '@/api';
 import { useQuery } from '@tanstack/react-query';
 
-export const useContentQuery = () => {
-  const contentIdRef = useRef<number | undefined>(undefined);
+export const useContent = () => {
+  const idRef = useRef<number | undefined>(undefined);
   const initialFetchDoneRef = useRef<boolean>(false);
 
   const { data, refetch } = useQuery<Content>({
-    queryKey: ['content', contentIdRef.current],
+    queryKey: ['content', idRef.current],
     queryFn: async () => {
       const res = await api('/contents/random', {
-        params: { prev: contentIdRef.current },
+        params: { prev: idRef.current },
       });
       return res.data;
     },
@@ -22,7 +22,7 @@ export const useContentQuery = () => {
   useEffect(() => {
     if (!data) return;
     initialFetchDoneRef.current = true;
-    contentIdRef.current = data.id;
+    idRef.current = data.id;
   }, [data]);
 
   return { content: data, fetchNewContent: refetch };

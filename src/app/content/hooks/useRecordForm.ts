@@ -1,6 +1,6 @@
 import { USERNAMES } from '@/constants';
 import api from '@/api';
-import { useContentQuery } from './useContentQuery';
+import { useContent } from './useContent';
 import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useTimer } from './useTimer';
@@ -15,7 +15,7 @@ export const useRecordForm = () => {
     USERNAMES[0],
   );
 
-  const { content, fetchNewContent } = useContentQuery();
+  const { content, fetchNewContent } = useContent();
 
   const {
     setIsActive,
