@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import animate from 'tailwindcss-animate';
 
 export const px0_1200_arr = Array.from({ length: 1201 }, (_, i) =>
   i.toString(),
@@ -49,7 +50,7 @@ const config = {
     },
   },
 
-  plugins: [require('tailwindcss-animate')],
+  plugins: [animate],
 } satisfies Config;
 
 export default config;
