@@ -1,5 +1,7 @@
 import { USERNAMES } from '@/constants';
+import api from '@/api';
 import { useContentQuery } from './useContentQuery';
+import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useTimer } from './useTimer';
 import { useToast } from '@/components/ui/use-toast';
@@ -25,6 +27,20 @@ export const useRecordForm = () => {
 
   const { toast } = useToast();
 
+  const { mutateAsync: createRecord } = useMutation({
+    mutationFn: async () => {
+      try {
+        await api.post('/records/create', {
+          content_id: content?.id ?? -1,
+          username,
+          text: input,
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    },
+  });
+
   const handleInputFocus = () => {
     setIsActive(true);
   };
@@ -45,12 +61,12 @@ export const useRecordForm = () => {
     setInput('');
   };
 
-  const getNewContent = () => {
-    fetchNewContent();
+  const getNewContent = async () => {
+    await fetchNewContent();
     resetForm();
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!input.length) {
       toast({
         description: '내용을 입력해 주세요',
@@ -60,11 +76,11 @@ export const useRecordForm = () => {
         description: '최대 100자를 입력해 주세요',
       });
     } else {
-      console.log(username, input);
+      await createRecord();
       toast({
         description: '기록 완료!',
       });
-      getNewContent();
+      await getNewContent();
     }
   };
 

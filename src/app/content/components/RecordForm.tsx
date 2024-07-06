@@ -29,7 +29,7 @@ const RecordForm = () => {
   return (
     <>
       <p className="mb-24 whitespace-pre-line text-center text-28 font-semibold">
-        {content}
+        {content?.text}
       </p>
 
       <button
