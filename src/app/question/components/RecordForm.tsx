@@ -45,7 +45,7 @@ const RecordForm = () => {
       <div className="mt-28 flex w-full flex-col gap-4">
         <textarea
           className={cn(
-            'h-160 w-full resize-none rounded-20 border-1 border-black px-16 py-12 caret-primary focus:border-primary',
+            'h-160 w-full resize-none rounded-20 border px-16 py-12 caret-primary focus:border-primary',
             exceedsMaxLength && 'caret-red focus:border-red focus:outline-red',
           )}
           value={input}
