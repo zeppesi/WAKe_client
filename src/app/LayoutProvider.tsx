@@ -12,10 +12,8 @@ const queryClient = new QueryClient({
   },
 });
 
-const LayoutProvider = ({ children }: PropsWithChildren) => {
-  return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  );
-};
+const LayoutProvider = ({ children }: PropsWithChildren) => (
+  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+);
 
 export default LayoutProvider;
