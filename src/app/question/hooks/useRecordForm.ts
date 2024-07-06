@@ -1,5 +1,5 @@
 import { USERNAMES } from '@/constants';
-import { useQuestionQuery } from './useQuestionQuery';
+import { useRandomContentQuery } from './useRandomContentQuery';
 import { useState } from 'react';
 import { useTimer } from './useTimer';
 import { useToast } from '@/components/ui/use-toast';
@@ -13,7 +13,7 @@ export const useRecordForm = () => {
     USERNAMES[0],
   );
 
-  const { question, fetchNewQuestion } = useQuestionQuery();
+  const { content, fetchNewContent } = useRandomContentQuery();
 
   const {
     setIsActive,
@@ -45,8 +45,8 @@ export const useRecordForm = () => {
     setInput('');
   };
 
-  const getNewQuestion = () => {
-    fetchNewQuestion();
+  const getNewContent = () => {
+    fetchNewContent();
     resetForm();
   };
 
@@ -64,13 +64,13 @@ export const useRecordForm = () => {
       toast({
         description: '기록 완료!',
       });
-      getNewQuestion();
+      getNewContent();
     }
   };
 
   return {
-    question,
-    getNewQuestion,
+    content,
+    getNewContent,
     remainingSeconds,
     isTimerEnd,
     input,

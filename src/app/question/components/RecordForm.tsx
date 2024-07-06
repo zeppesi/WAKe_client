@@ -11,8 +11,8 @@ import styles from '../page.module.css';
 
 const RecordForm = () => {
   const {
-    question,
-    getNewQuestion,
+    content,
+    getNewContent,
     remainingSeconds,
     isTimerEnd,
     input,
@@ -29,7 +29,7 @@ const RecordForm = () => {
   return (
     <>
       <p className="mb-24 whitespace-pre-line text-center text-28 font-semibold">
-        {question}
+        {content}
       </p>
 
       <button
@@ -37,7 +37,7 @@ const RecordForm = () => {
           commonStyles.cta,
           'h-52 w-180 justify-center rounded-32 text-20 font-bold active:scale-95',
         )}
-        onClick={getNewQuestion}
+        onClick={getNewContent}
       >
         다른 질문 받기
       </button>
@@ -58,7 +58,7 @@ const RecordForm = () => {
         </span>
       </div>
 
-      <div className="bg-lightGray mb-20 mt-16 flex w-full items-center justify-center rounded-12 px-12 py-8 text-28 font-extrabold text-red">
+      <div className="mb-20 mt-16 flex w-full items-center justify-center rounded-12 bg-lightGray px-12 py-8 text-28 font-extrabold text-red">
         {isTimerEnd ? '지금 떠오른 그 단어를 던져요' : remainingSeconds}
       </div>
 
@@ -84,7 +84,7 @@ const RecordForm = () => {
         ))}
       </RadioGroup>
 
-      <footer className="border-lightGray fixed bottom-0 flex h-80 w-full items-center justify-center border-t bg-white px-40">
+      <footer className="fixed bottom-0 flex h-80 w-full items-center justify-center border-t border-lightGray bg-white px-40">
         <button
           className={cn(
             commonStyles.cta,
