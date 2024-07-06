@@ -16,7 +16,8 @@ const config = {
       colors: {
         black: '#222222',
         primary: '#00E507',
-        gray: '#EAEAEA',
+        gray: '#D9D9D9',
+        lightGray: '#EAEAEA',
         red: '#F00808',
       },
       borderWidth: px0_1200,
