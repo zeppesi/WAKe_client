@@ -8,13 +8,17 @@
   "parserOptions": {
     "project": "tsconfig.json"
   },
-  "ignorePatterns": ["postcss.config.mjs", "src/components/ui"],
+  "ignorePatterns": [
+    "next.config.mjs",
+    "postcss.config.mjs",
+    "src/components/ui"
+  ],
   "rules": {
     "tailwindcss/classname-order": "off",
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/naming-convention": "warn",
     "arrow-parens": "off",
-    "import/order": "warn",
+    "import/order": "off",
     "react/function-component-definition": "off",
     "arrow-body-style": "warn",
     "@typescript-eslint/indent": "off",
@@ -30,6 +34,10 @@
     "object-curly-newline": "off",
     "@typescript-eslint/no-use-before-define": "warn",
     "default-case": "warn",
-    "no-confusing-arrow": "off"
+    "no-confusing-arrow": "off",
+    "jsx-a11y/control-has-associated-label": "off",
+    "operator-linebreak": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off"
   }
 }

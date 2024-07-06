@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import animate from 'tailwindcss-animate';
 
 export const px0_1200_arr = Array.from({ length: 1201 }, (_, i) =>
   i.toString(),
@@ -15,7 +16,8 @@ const config = {
       colors: {
         black: '#222222',
         primary: '#00E507',
-        gray: '#EAEAEA',
+        gray: '#D9D9D9',
+        lightGray: '#EAEAEA',
         red: '#F00808',
       },
       borderWidth: px0_1200,
@@ -49,7 +51,7 @@ const config = {
     },
   },
 
-  plugins: [require('tailwindcss-animate')],
+  plugins: [animate],
 } satisfies Config;
 
 export default config;

@@ -42,10 +42,10 @@ const RecordForm = () => {
         다른 질문 받기
       </button>
 
-      <div className="mt-28 flex w-full max-w-400 flex-col gap-4">
+      <div className="mt-28 flex w-full flex-col gap-4">
         <textarea
           className={cn(
-            'h-160 w-full resize-none rounded-20 border-1 border-black px-16 py-12 caret-primary focus:border-primary',
+            'h-160 w-full resize-none rounded-20 border px-16 py-12 caret-primary focus:border-primary',
             exceedsMaxLength && 'caret-red focus:border-red focus:outline-red',
           )}
           value={input}
@@ -58,7 +58,7 @@ const RecordForm = () => {
         </span>
       </div>
 
-      <div className="mb-20 mt-16 flex w-full max-w-400 items-center justify-center rounded-12 bg-gray px-12 py-8 text-28 font-extrabold text-red">
+      <div className="bg-lightGray mb-20 mt-16 flex w-full items-center justify-center rounded-12 px-12 py-8 text-28 font-extrabold text-red">
         {isTimerEnd ? '지금 떠오른 그 단어를 던져요' : remainingSeconds}
       </div>
 
@@ -84,11 +84,11 @@ const RecordForm = () => {
         ))}
       </RadioGroup>
 
-      <footer className="fixed bottom-0 flex h-80 w-full items-center justify-center border-t border-gray bg-white px-40">
+      <footer className="border-lightGray fixed bottom-0 flex h-80 w-full items-center justify-center border-t bg-white px-40">
         <button
           className={cn(
             commonStyles.cta,
-            'h-56 w-full max-w-360 justify-center rounded-12 text-24 font-bold',
+            'h-56 w-full max-w-1000 justify-center rounded-12 text-24 font-bold',
           )}
           onClick={handleSubmit}
         >

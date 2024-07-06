@@ -5,3 +5,8 @@
 .cta {
   @apply flex items-center bg-primary text-white;
 }
+
+.header {
+  @apply flex items-center justify-end px-16;
+  height: var(--header-height);
+}
