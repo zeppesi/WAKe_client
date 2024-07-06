@@ -1,5 +1,5 @@
 import { USERNAMES } from '@/constants';
-import { useQuestion } from './useQuestion';
+import { useQuestionQuery } from './useQuestionQuery';
 import { useState } from 'react';
 import { useTimer } from './useTimer';
 import { useToast } from '@/components/ui/use-toast';
@@ -8,7 +8,7 @@ export const INPUT_MAX_LENGTH = 100;
 
 // TODO: refactor
 export const useRecordForm = () => {
-  const { question, fetchNewQuestion } = useQuestion();
+  const { question, fetchNewQuestion } = useQuestionQuery();
 
   const {
     setIsActive,
