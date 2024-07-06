@@ -39,14 +39,15 @@ const MOCK_RECORDS = [
 ];
 
 export const useRecordList = () => {
-  const records: Record[] = MOCK_RECORDS;
-
+  // TODO: useRecordsQuery
   const visibleDates = useAtomValue(visibleDatesAtom);
   const targetDate = visibleDates[visibleDates.length - 1];
 
   const username = useAtomValue(usernameAtom);
 
   useEffect(() => {}, [targetDate, username]);
+
+  const records: Record[] = MOCK_RECORDS;
 
   return { records };
 };

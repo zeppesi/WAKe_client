@@ -8,6 +8,11 @@ export const INPUT_MAX_LENGTH = 100;
 
 // TODO: refactor
 export const useRecordForm = () => {
+  const [input, setInput] = useState<string>('');
+  const [username, setUsername] = useState<(typeof USERNAMES)[number]>(
+    USERNAMES[0],
+  );
+
   const { question, fetchNewQuestion } = useQuestionQuery();
 
   const {
@@ -19,22 +24,6 @@ export const useRecordForm = () => {
   } = useTimer();
 
   const { toast } = useToast();
-
-  const [input, setInput] = useState<string>('');
-  const [username, setUsername] = useState<(typeof USERNAMES)[number]>(
-    USERNAMES[0],
-  );
-
-  const resetForm = () => {
-    resetRemainingSeconds();
-    setIsActive(false);
-    setInput('');
-  };
-
-  const getNewQuestion = () => {
-    fetchNewQuestion();
-    resetForm();
-  };
 
   const handleInputFocus = () => {
     setIsActive(true);
@@ -48,6 +37,17 @@ export const useRecordForm = () => {
 
   const handleInputBlur = () => {
     setIsActive(false);
+  };
+
+  const resetForm = () => {
+    resetRemainingSeconds();
+    setIsActive(false);
+    setInput('');
+  };
+
+  const getNewQuestion = () => {
+    fetchNewQuestion();
+    resetForm();
   };
 
   const handleSubmit = () => {

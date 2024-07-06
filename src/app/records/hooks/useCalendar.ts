@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 import { useResetAtom } from 'jotai/utils';
 
 export const useCalendar = () => {
+  // TODO: useRecordsQuery
+
   const [selectedDate, setSelectedDate] = useAtom(selectedDateAtom);
   const [visibleDates, setVisibleDates] = useAtom(visibleDatesAtom);
 
@@ -18,6 +20,8 @@ export const useCalendar = () => {
   const handleClickNext = () => {
     setVisibleDates(prev => prev.map(date => date.add(7, 'day')));
   };
+
+  // TODO: hasRecord
 
   useEffect(() => {
     setSelectedDate(visibleDates[visibleDates.length - 1]);
