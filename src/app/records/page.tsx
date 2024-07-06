@@ -1,5 +1,6 @@
 import Calendar from './components/Calendar';
 import Header from './components/Header';
+import RecordList from './components/RecordList';
 
 const Records = () => (
   <main className="pt-170">
@@ -7,8 +8,7 @@ const Records = () => (
       <Header />
       <Calendar />
     </div>
-
-    <section></section>
+    <RecordList />
   </main>
 );
 
