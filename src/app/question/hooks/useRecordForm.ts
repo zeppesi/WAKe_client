@@ -51,17 +51,21 @@ export const useRecordForm = () => {
   };
 
   const handleSubmit = () => {
-    if (input.length > INPUT_MAX_LENGTH) {
-      return toast({
+    if (!input.length) {
+      toast({
+        description: '내용을 입력해 주세요',
+      });
+    } else if (input.length > INPUT_MAX_LENGTH) {
+      toast({
         description: '최대 100자를 입력해 주세요',
       });
+    } else {
+      console.log(username, input);
+      toast({
+        description: '기록 완료!',
+      });
+      getNewQuestion();
     }
-
-    console.log(username, input);
-    toast({
-      description: '기록 완료!',
-    });
-    getNewQuestion();
   };
 
   return {
