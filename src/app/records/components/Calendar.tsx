@@ -18,7 +18,7 @@ const Calendar = () => {
   const {
     selectedDate,
     setSelectedDate,
-    visibleDates,
+    dates,
     handleClickPrev,
     handleClickNext,
   } = useCalendar();
@@ -64,7 +64,7 @@ const Calendar = () => {
           <Left width={36} height={36} />
         </button>
 
-        {visibleDates.map(date => (
+        {dates.map(date => (
           <div
             key={date.valueOf()}
             className={cn(

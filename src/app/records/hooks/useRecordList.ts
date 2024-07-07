@@ -1,4 +1,4 @@
-import { usernameAtom, visibleDatesAtom } from '@/states/records';
+import { usernameAtom, datesAtom } from '@/states/records';
 
 import { Record } from '@/types';
 import dayjs from 'dayjs';
@@ -40,8 +40,8 @@ const MOCK_RECORDS = [
 
 export const useRecordList = () => {
   // TODO: useRecordsQuery
-  const visibleDates = useAtomValue(visibleDatesAtom);
-  const targetDate = visibleDates[visibleDates.length - 1];
+  const dates = useAtomValue(datesAtom);
+  const targetDate = dates[dates.length - 1];
 
   const username = useAtomValue(usernameAtom);
 
