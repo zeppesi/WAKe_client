@@ -1,9 +1,9 @@
-import { usernameAtom, datesAtom } from '@/states/records';
+import { datesAtom, selectedDateAtom, usernameAtom } from '@/states/records';
 
 import { Record } from '@/types';
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
-import { useEffect } from 'react';
+import { useRecordListQuery } from './useRecordListQuery';
 
 const MOCK_RECORDS = [
   {
@@ -39,15 +39,20 @@ const MOCK_RECORDS = [
 ];
 
 export const useRecordList = () => {
-  // TODO: useRecordsQuery
+  const selectedDate = useAtomValue(selectedDateAtom);
   const dates = useAtomValue(datesAtom);
   const targetDate = dates[dates.length - 1];
 
   const username = useAtomValue(usernameAtom);
 
-  useEffect(() => {}, [targetDate, username]);
+  const { data } = useRecordListQuery(
+    username,
+    targetDate.format('YYYY-MM-DD'),
+  );
 
-  const records: Record[] = MOCK_RECORDS;
+  const records: Record[] =
+    data?.find(item => item.date === selectedDate.format('YYYY-MM-DD'))
+      ?.records ?? [];
 
   return { records };
 };
