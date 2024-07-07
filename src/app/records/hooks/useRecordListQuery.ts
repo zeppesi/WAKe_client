@@ -8,7 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 export const useRecordListQuery = () => {
   const username = useAtomValue(usernameAtom);
   const dates = useAtomValue(datesAtom);
-  const targetDate = dates[dates.length - 1];
+  const targetDate = dates[dates.length - 1].format('YYYY-MM-DD');
 
   const { data } = useQuery<
     {
@@ -19,7 +19,7 @@ export const useRecordListQuery = () => {
     queryKey: ['records', username, targetDate],
     queryFn: async () => {
       const res = await api('/records/list', {
-        params: { username, targetDate: targetDate.format('YYYY-MM-DD') },
+        params: { username, targetDate },
       });
       return res.data;
     },
