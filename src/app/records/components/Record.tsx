@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 const Record = ({ record }: { record: RecordType }) => (
   <article className="flex border-b text-14">
     <time className="flex items-center border-r px-8">
-      {dayjs(record.createdAt).format('hh:mm')}
+      {dayjs(record.createdAt).format('HH:mm')}
     </time>
     <div className="w-full">
       <h5 className="px-12 py-14 font-semibold">{record.content.text}</h5>

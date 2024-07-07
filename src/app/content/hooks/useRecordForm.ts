@@ -60,7 +60,7 @@ export const useRecordForm = () => {
       });
     }
 
-    if (input.length > INPUT_MAX_LENGTH) {
+    if (exceedsMaxLength) {
       return toast({
         description: '최대 100자를 입력해 주요',
       });
