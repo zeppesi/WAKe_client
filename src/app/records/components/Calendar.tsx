@@ -21,6 +21,7 @@ const Calendar = () => {
     dates,
     handleClickPrev,
     handleClickNext,
+    hasRecordForDate,
   } = useCalendar();
 
   const today = selectedDate.format('M월 D일 (ddd)');
@@ -68,7 +69,7 @@ const Calendar = () => {
           <div
             key={date.valueOf()}
             className={cn(
-              styles.date,
+              hasRecordForDate(date) && styles.dateWithRecord,
               'relative flex w-48 cursor-pointer flex-col items-center gap-8 py-4 text-14',
               date.isSame(selectedDate) && 'font-bold',
             )}

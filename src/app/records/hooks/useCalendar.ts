@@ -1,14 +1,15 @@
 import { datesAtom, getInitialDates, selectedDateAtom } from '@/states/records';
+import dayjs, { Dayjs } from 'dayjs';
 
-import dayjs from 'dayjs';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
+import { useRecordListQuery } from './useRecordListQuery';
 
 export const useCalendar = () => {
-  // TODO: useRecordsQuery
-
   const [selectedDate, setSelectedDate] = useAtom(selectedDateAtom);
   const [dates, setDates] = useAtom(datesAtom);
+
+  const { data } = useRecordListQuery();
 
   const resetSelectedDate = () => setSelectedDate(dayjs());
   const resetDates = () => setDates(getInitialDates());
@@ -21,7 +22,9 @@ export const useCalendar = () => {
     setDates(prev => prev.map(date => date.add(7, 'day')));
   };
 
-  // TODO: hasRecord
+  const hasRecordForDate = (date: Dayjs) =>
+    !!data?.find(item => item.date === date.format('YYYY-MM-DD'))?.records
+      ?.length;
 
   useEffect(() => {
     setSelectedDate(dates[dates.length - 1]);
@@ -40,5 +43,6 @@ export const useCalendar = () => {
     dates,
     handleClickPrev,
     handleClickNext,
+    hasRecordForDate,
   };
 };
