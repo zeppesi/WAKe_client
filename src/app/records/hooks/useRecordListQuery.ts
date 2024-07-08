@@ -18,8 +18,8 @@ export const useRecordListQuery = () => {
   >({
     queryKey: ['records', username, targetDate],
     queryFn: async () => {
-      const res = await api('/records/list', {
-        params: { username, targetDate },
+      const res = await api('/records/list/', {
+        params: { username, target_date: targetDate },
       });
       return res.data;
     },

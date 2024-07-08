@@ -11,8 +11,6 @@ import styles from '../page.module.css';
 import { useContent } from '../hooks/useContent';
 
 const RecordForm = () => {
-  const { content, fetchNewContent } = useContent();
-
   const {
     input,
     username,
@@ -27,14 +25,12 @@ const RecordForm = () => {
     resetForm,
   } = useRecordForm();
 
-  const handleNewContent = async () => {
-    await fetchNewContent();
-    resetForm();
-  };
+  const { content, fetchNewContent } = useContent(resetForm);
 
   const handleSubmit = async () => {
-    await submitForm(content?.id ?? -1);
-    await handleNewContent();
+    if (!content) return;
+    await submitForm(content.id);
+    fetchNewContent();
   };
 
   // TODO: refactor
@@ -49,7 +45,7 @@ const RecordForm = () => {
           commonStyles.cta,
           'h-52 w-180 justify-center rounded-32 text-20 font-bold active:scale-95',
         )}
-        onClick={handleNewContent}
+        onClick={fetchNewContent}
       >
         다른 질문 받기
       </button>
