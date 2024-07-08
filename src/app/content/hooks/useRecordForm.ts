@@ -49,7 +49,10 @@ export const useRecordForm = () => {
     setIsActive(false);
   };
 
-  const submitForm = async (contentId: number, onSuccess: () => void) => {
+  const submitForm = async (
+    contentId: number,
+    onSuccess: () => Promise<void>,
+  ) => {
     if (!input.length) {
       return toast({
         description: '내용을 입력해 주세요',
@@ -58,7 +61,7 @@ export const useRecordForm = () => {
 
     if (exceedsMaxLength) {
       return toast({
-        description: '최대 100자를 입력해 주요',
+        description: '최대 100자를 입력해 주세요',
       });
     }
 
@@ -66,7 +69,7 @@ export const useRecordForm = () => {
     toast({
       description: '기록 완료!',
     });
-    onSuccess();
+    await onSuccess();
   };
 
   const resetForm = () => {

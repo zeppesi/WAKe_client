@@ -1,31 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { Content } from '@/types';
 import api from '@/api';
 import { useQuery } from '@tanstack/react-query';
 
-export const useContent = (onSuccess: () => void) => {
-  const [prevId, setPrevId] = useState<number | null>(null);
+export const useContent = () => {
+  const idRef = useRef<number | null>(null);
 
-  const { data } = useQuery<Content>({
-    queryKey: ['content', prevId],
+  const { data, refetch } = useQuery<Content>({
+    queryKey: ['content'],
     queryFn: async () => {
       const res = await api('/contents/random/', {
-        params: prevId === null ? {} : { prev: prevId },
+        params: idRef.current === null ? {} : { prev: idRef.current },
       });
       return res.data;
     },
   });
 
-  const fetchNewContent = () => {
-    if (!data) return;
-    setPrevId(data.id);
-  };
-
   useEffect(() => {
-    if (!data || prevId === null) return;
-    onSuccess();
+    if (!data) return;
+    idRef.current = data.id;
   }, [data]);
 
-  return { content: data, fetchNewContent };
+  return { content: data, fetchNewContent: refetch };
 };
