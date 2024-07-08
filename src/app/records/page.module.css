@@ -1,4 +1,4 @@
-.date {
+.dateWithRecord {
   &::after {
     content: '';
     position: absolute;

@@ -1,5 +1,6 @@
 import '@/styles/globals.css';
 
+import LayoutProvider from './LayoutProvider';
 import type { Metadata } from 'next';
 import { cn } from '@/styles/utils';
 import { notoSansKR } from '@/styles/fonts';
@@ -18,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={notoSansKR.className}>
-        <div className={cn(styles.layoutWidth, 'mx-auto')}>{children}</div>
+        <div className={cn(styles.layoutWidth, 'mx-auto')}>
+          <LayoutProvider>{children}</LayoutProvider>
+        </div>
       </body>
     </html>
   );

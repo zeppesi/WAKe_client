@@ -6,7 +6,7 @@ import Left from '@/assets/svgs/left.svg';
 import Right from '@/assets/svgs/right.svg';
 import { USERNAMES } from '@/constants';
 import { cn } from '@/styles/utils';
-import questionStyles from '../../question/page.module.css';
+import contentStyles from '../../content/page.module.css';
 import styles from '../page.module.css';
 import { useAtom } from 'jotai';
 import { useCalendar } from '../hooks/useCalendar';
@@ -18,9 +18,10 @@ const Calendar = () => {
   const {
     selectedDate,
     setSelectedDate,
-    visibleDates,
+    dates,
     handleClickPrev,
     handleClickNext,
+    hasRecordForDate,
   } = useCalendar();
 
   const today = selectedDate.format('M월 D일 (ddd)');
@@ -45,7 +46,7 @@ const Calendar = () => {
           }
         >
           {USERNAMES.map(username => (
-            <div key={username} className={questionStyles.username}>
+            <div key={username} className={contentStyles.username}>
               <RadioGroupItem
                 id={username}
                 className="size-16 border-black text-black"
@@ -64,11 +65,11 @@ const Calendar = () => {
           <Left width={36} height={36} />
         </button>
 
-        {visibleDates.map(date => (
+        {dates.map(date => (
           <div
             key={date.valueOf()}
             className={cn(
-              styles.date,
+              hasRecordForDate(date) && styles.dateWithRecord,
               'relative flex w-48 cursor-pointer flex-col items-center gap-8 py-4 text-14',
               date.isSame(selectedDate) && 'font-bold',
             )}

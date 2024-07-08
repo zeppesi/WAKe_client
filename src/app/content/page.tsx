@@ -3,7 +3,7 @@ import RecordForm from './components/RecordForm';
 import { cn } from '@/styles/utils';
 import { poppins } from '@/styles/fonts';
 
-const Question = () => (
+const Content = () => (
   <main className="flex flex-col items-center p-24 pb-104">
     <Header />
     <h1
@@ -18,4 +18,4 @@ const Question = () => (
   </main>
 );
 
-export default Question;
+export default Content;

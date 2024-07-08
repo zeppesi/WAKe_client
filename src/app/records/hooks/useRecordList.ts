@@ -1,53 +1,14 @@
-import { usernameAtom, visibleDatesAtom } from '@/states/records';
-
-import { Record } from '@/types';
-import dayjs from 'dayjs';
+import { selectedDateAtom } from '@/states/records';
 import { useAtomValue } from 'jotai';
-import { useEffect } from 'react';
-
-const MOCK_RECORDS = [
-  {
-    id: 1,
-    text: '안녕하세요',
-    createdAt: dayjs().toISOString(),
-    updatedAt: dayjs().toISOString(),
-    content: {
-      id: 1,
-      text: '안녕하세요',
-    },
-  },
-  {
-    id: 2,
-    text: '안녕하세요',
-    createdAt: dayjs().subtract(1, 'day').toISOString(),
-    updatedAt: dayjs().subtract(1, 'day').toISOString(),
-    content: {
-      id: 2,
-      text: '안녕하세요',
-    },
-  },
-  {
-    id: 3,
-    text: '안녕하세요',
-    createdAt: dayjs().subtract(2, 'day').toISOString(),
-    updatedAt: dayjs().subtract(2, 'day').toISOString(),
-    content: {
-      id: 3,
-      text: '안녕하세요',
-    },
-  },
-];
+import { useRecordListQuery } from './useRecordListQuery';
 
 export const useRecordList = () => {
-  // TODO: useRecordsQuery
-  const visibleDates = useAtomValue(visibleDatesAtom);
-  const targetDate = visibleDates[visibleDates.length - 1];
+  const { data } = useRecordListQuery();
+  const selectedDate = useAtomValue(selectedDateAtom);
 
-  const username = useAtomValue(usernameAtom);
-
-  useEffect(() => {}, [targetDate, username]);
-
-  const records: Record[] = MOCK_RECORDS;
+  const records =
+    data?.find(item => item.date === selectedDate.format('YYYY-MM-DD'))
+      ?.records ?? [];
 
   return { records };
 };

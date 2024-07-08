@@ -8,28 +8,40 @@ import { USERNAMES } from '@/constants';
 import { cn } from '@/styles/utils';
 import commonStyles from '@/styles/common.module.css';
 import styles from '../page.module.css';
+import { useContent } from '../hooks/useContent';
 
 const RecordForm = () => {
+  const { content, fetchNewContent } = useContent();
+
   const {
-    question,
-    getNewQuestion,
+    input,
+    username,
+    setUsername,
     remainingSeconds,
     isTimerEnd,
-    input,
+    exceedsMaxLength,
     handleInputFocus,
     handleInputChange,
     handleInputBlur,
-    handleSubmit,
-    username,
-    setUsername,
+    submitForm,
+    resetForm,
   } = useRecordForm();
 
-  const exceedsMaxLength = input.length > INPUT_MAX_LENGTH;
+  const handleNewContent = async () => {
+    await fetchNewContent();
+    resetForm();
+  };
 
+  const handleSubmit = async () => {
+    if (!content) return;
+    await submitForm(content.id, handleNewContent);
+  };
+
+  // TODO: refactor
   return (
     <>
       <p className="mb-24 whitespace-pre-line text-center text-28 font-semibold">
-        {question}
+        {content?.text}
       </p>
 
       <button
@@ -37,7 +49,7 @@ const RecordForm = () => {
           commonStyles.cta,
           'h-52 w-180 justify-center rounded-32 text-20 font-bold active:scale-95',
         )}
-        onClick={getNewQuestion}
+        onClick={handleNewContent}
       >
         다른 질문 받기
       </button>
@@ -58,7 +70,7 @@ const RecordForm = () => {
         </span>
       </div>
 
-      <div className="bg-lightGray mb-20 mt-16 flex w-full items-center justify-center rounded-12 px-12 py-8 text-28 font-extrabold text-red">
+      <div className="mb-20 mt-16 flex w-full items-center justify-center rounded-12 bg-lightGray px-12 py-8 text-28 font-extrabold text-red">
         {isTimerEnd ? '지금 떠오른 그 단어를 던져요' : remainingSeconds}
       </div>
 
@@ -84,7 +96,7 @@ const RecordForm = () => {
         ))}
       </RadioGroup>
 
-      <footer className="border-lightGray fixed bottom-0 flex h-80 w-full items-center justify-center border-t bg-white px-40">
+      <footer className="fixed bottom-0 flex h-80 w-full items-center justify-center border-t border-lightGray bg-white px-40">
         <button
           className={cn(
             commonStyles.cta,

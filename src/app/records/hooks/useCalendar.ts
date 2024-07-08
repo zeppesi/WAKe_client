@@ -1,44 +1,48 @@
-import { selectedDateAtom, visibleDatesAtom } from '@/states/records';
+import { datesAtom, getInitialDates, selectedDateAtom } from '@/states/records';
+import dayjs, { Dayjs } from 'dayjs';
 
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
-import { useResetAtom } from 'jotai/utils';
+import { useRecordListQuery } from './useRecordListQuery';
 
 export const useCalendar = () => {
-  // TODO: useRecordsQuery
-
   const [selectedDate, setSelectedDate] = useAtom(selectedDateAtom);
-  const [visibleDates, setVisibleDates] = useAtom(visibleDatesAtom);
+  const [dates, setDates] = useAtom(datesAtom);
 
-  const resetSelectedDate = useResetAtom(selectedDateAtom);
-  const resetVisibleDates = useResetAtom(visibleDatesAtom);
+  const { data } = useRecordListQuery();
+
+  const resetSelectedDate = () => setSelectedDate(dayjs());
+  const resetDates = () => setDates(getInitialDates());
 
   const handleClickPrev = () => {
-    setVisibleDates(prev => prev.map(date => date.subtract(7, 'day')));
+    setDates(prev => prev.map(date => date.subtract(7, 'day')));
   };
 
   const handleClickNext = () => {
-    setVisibleDates(prev => prev.map(date => date.add(7, 'day')));
+    setDates(prev => prev.map(date => date.add(7, 'day')));
   };
 
-  // TODO: hasRecord
+  const hasRecordForDate = (date: Dayjs) =>
+    !!data?.find(item => item.date === date.format('YYYY-MM-DD'))?.records
+      ?.length;
 
   useEffect(() => {
-    setSelectedDate(visibleDates[visibleDates.length - 1]);
-  }, [visibleDates]);
+    setSelectedDate(dates[dates.length - 1]);
+  }, [dates]);
 
   useEffect(() => {
     return () => {
       resetSelectedDate();
-      resetVisibleDates();
+      resetDates();
     };
   }, []);
 
   return {
     selectedDate,
     setSelectedDate,
-    visibleDates,
+    dates,
     handleClickPrev,
     handleClickNext,
+    hasRecordForDate,
   };
 };
