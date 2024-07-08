@@ -29,8 +29,7 @@ const RecordForm = () => {
 
   const handleSubmit = async () => {
     if (!content) return;
-    await submitForm(content.id);
-    fetchNewContent();
+    await submitForm(content.id, fetchNewContent);
   };
 
   // TODO: refactor

@@ -49,7 +49,7 @@ export const useRecordForm = () => {
     setIsActive(false);
   };
 
-  const submitForm = async (contentId: number) => {
+  const submitForm = async (contentId: number, onSuccess: () => void) => {
     if (!input.length) {
       return toast({
         description: '내용을 입력해 주세요',
@@ -66,6 +66,7 @@ export const useRecordForm = () => {
     toast({
       description: '기록 완료!',
     });
+    onSuccess();
   };
 
   const resetForm = () => {
