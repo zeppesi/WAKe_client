@@ -54,12 +54,14 @@ export const useRecordForm = () => {
     onSuccess: () => Promise<void>,
   ) => {
     if (!input.length) {
+      document.getElementById('textarea')?.focus();
       return toast({
         description: '내용을 입력해 주세요',
       });
     }
 
     if (exceedsMaxLength) {
+      document.getElementById('textarea')?.focus();
       return toast({
         description: '최대 100자를 입력해 주세요',
       });
