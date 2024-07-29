@@ -54,8 +54,18 @@ const RecordForm = () => {
         다른 질문 받기
       </button>
 
-      <div className="mt-28 flex w-full flex-col gap-4">
+      <div className="my-20 flex w-full items-center justify-center rounded-12 bg-lightGray px-12 py-8 text-28 font-extrabold text-red">
+        {isTimerEnd ? '지금 떠오른 그 단어를 던져요' : remainingSeconds}
+      </div>
+
+      <div className="flex w-full flex-col gap-8">
+        <span
+          className={cn('self-end text-14', exceedsMaxLength && 'text-red')}
+        >
+          {input.length}/{INPUT_MAX_LENGTH}
+        </span>
         <textarea
+          id="textarea"
           className={cn(
             'h-160 w-full resize-none rounded-20 border px-16 py-12 caret-primary focus:border-primary',
             exceedsMaxLength && 'caret-red focus:border-red focus:outline-red',
@@ -65,38 +75,31 @@ const RecordForm = () => {
           onChange={handleInputChange}
           onBlur={handleInputBlur}
         />
-        <span className={cn('self-end', exceedsMaxLength && 'text-red')}>
-          {input.length}/{INPUT_MAX_LENGTH}
-        </span>
       </div>
 
-      <div className="mb-20 mt-16 flex w-full items-center justify-center rounded-12 bg-lightGray px-12 py-8 text-28 font-extrabold text-red">
-        {isTimerEnd ? '지금 떠오른 그 단어를 던져요' : remainingSeconds}
-      </div>
+      <footer className="fixed bottom-0 flex h-120 w-full flex-col items-center justify-center gap-12 border-t border-lightGray bg-white px-40">
+        <RadioGroup
+          className="flex items-center gap-16"
+          defaultValue={USERNAMES[0]}
+          value={username}
+          onValueChange={username =>
+            setUsername(username as (typeof USERNAMES)[number])
+          }
+        >
+          {USERNAMES.map(username => (
+            <div key={username} className={styles.username}>
+              <RadioGroupItem
+                id={username}
+                className="size-16 border-black text-black"
+                value={username}
+              />
+              <label htmlFor={username} className="cursor-pointer">
+                {username}
+              </label>
+            </div>
+          ))}
+        </RadioGroup>
 
-      <RadioGroup
-        className="flex items-center gap-16"
-        defaultValue={USERNAMES[0]}
-        value={username}
-        onValueChange={username =>
-          setUsername(username as (typeof USERNAMES)[number])
-        }
-      >
-        {USERNAMES.map(username => (
-          <div key={username} className={styles.username}>
-            <RadioGroupItem
-              id={username}
-              className="size-16 border-black text-black"
-              value={username}
-            />
-            <label htmlFor={username} className="cursor-pointer">
-              {username}
-            </label>
-          </div>
-        ))}
-      </RadioGroup>
-
-      <footer className="fixed bottom-0 flex h-80 w-full items-center justify-center border-t border-lightGray bg-white px-40">
         <button
           className={cn(
             commonStyles.cta,
