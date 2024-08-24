@@ -2,7 +2,8 @@ import axios from 'axios';
 import camelcaseKeys from 'camelcase-keys';
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+  baseURL: '/server',
+  withCredentials: true,
 });
 
 api.interceptors.response.use(response => {
