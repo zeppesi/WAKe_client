@@ -15,7 +15,7 @@ export const useRecordForm = () => {
 
   const { mutateAsync: createRecord } = useMutation({
     mutationFn: async (contentId: number) => {
-      await api.post('/records/create/', {
+      await api.post('/records/records/create/', {
         content_id: contentId,
         username,
         text: input,
