@@ -6,6 +6,7 @@ import { poppins } from '@/styles/fonts';
 import styles from './page.module.css';
 import kakaoLogin from '@/assets/images/kakao_login.png';
 import { cookies } from 'next/headers';
+import { LogoutButton } from './components/LogoutButton';
 
 const Home = () => {
   const cookieStore = cookies();
@@ -52,6 +53,8 @@ const Home = () => {
           >
             기록 내역
           </Link>
+
+          <LogoutButton />
         </div>
       ) : (
         <a
