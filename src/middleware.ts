@@ -13,6 +13,7 @@ export async function middleware(req: NextRequest) {
     if (access) {
       res.cookies.set('access', access, {
         httpOnly: true,
+        maxAge: 30 * 24 * 60 * 60,
       });
     }
     if (refresh) {
