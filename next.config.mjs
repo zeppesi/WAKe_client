@@ -1,7 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  trailingSlash: true,
-
   webpack(config) {
     const fileLoaderRule = config.module.rules.find(rule =>
       rule.test?.test?.('.svg'),
@@ -24,15 +22,6 @@ const nextConfig = {
     fileLoaderRule.exclude = /\.svg$/i;
 
     return config;
-  },
-
-  async rewrites() {
-    return [
-      {
-        source: '/server/:path*/',
-        destination: `${process.env.NEXT_PUBLIC_API_URL}/:path*/`,
-      },
-    ];
   },
 };
 
