@@ -45,6 +45,13 @@ const Home = () => (
       >
         기록 내역
       </Link>
+
+      <a
+        className="mt-auto"
+        href={`https://kauth.kakao.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_API_URL}/accounts/kakao/callback/&response_type=code`}
+      >
+        <img className="w-200" alt="카카오 로그인" />
+      </a>
     </div>
   </main>
 );
