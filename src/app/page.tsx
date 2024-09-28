@@ -5,9 +5,10 @@ import { poppins } from '@/styles/fonts';
 import styles from './page.module.css';
 import kakaoLogin from '@/assets/images/kakao_login.png';
 import Night from '@/assets/svgs/night.svg';
+import { cookies } from 'next/headers';
 
 const Home = () => {
-  const isLogined = false;
+  const isLogined = !!cookies().get('access');
   return (
     <main className="flex min-h-screen flex-col items-center bg-gradient-to-r from-[#C8F7FD] via-[#F3FFD9] to-[#FFFFFF] p-24">
       {isLogined ? (
@@ -62,7 +63,11 @@ const Home = () => {
             자신을 기록해 보세요
           </p>
 
-          <a href={process.env.NEXT_PUBLIC_API_URL + '/social/kakao/getcode/'}>
+          <a
+            href={
+              process.env.NEXT_PUBLIC_API_BASE_URL + '/social/kakao/getcode/'
+            }
+          >
             <img className="w-240" src={kakaoLogin.src} alt="카카오 로그인" />
           </a>
         </>
