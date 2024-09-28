@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: 'WAKe',
     start_url: '/',
     display: 'standalone',
-    background_color: '#00E507',
-    theme_color: '#00E507',
+    background_color: '#27D395',
+    theme_color: '#27D395',
   };
 }
