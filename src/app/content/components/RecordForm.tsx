@@ -1,13 +1,10 @@
 'use client';
 
 import { INPUT_MAX_LENGTH, useRecordForm } from '../hooks/useRecordForm';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radioGroup';
 
 import { Toaster } from '@/components/ui/toaster';
-import { USERNAMES } from '@/constants';
 import { cn } from '@/styles/utils';
 import commonStyles from '@/styles/common.module.css';
-import styles from '../page.module.css';
 import { useContent } from '../hooks/useContent';
 import Refresh from '@/assets/svgs/refresh.svg';
 
@@ -16,8 +13,6 @@ const RecordForm = () => {
 
   const {
     input,
-    username,
-    setUsername,
     remainingSeconds,
     isTimerEnd,
     exceedsMaxLength,
@@ -71,43 +66,19 @@ const RecordForm = () => {
         </span>
       </div>
 
-      <footer className="fixed bottom-0 flex h-120 w-full flex-col items-center justify-center gap-12 border-t border-lightGray bg-white px-40">
-        <RadioGroup
-          className="flex items-center gap-16"
-          defaultValue={USERNAMES[0]}
-          value={username}
-          onValueChange={username =>
-            setUsername(username as (typeof USERNAMES)[number])
-          }
+      <footer className="fixed bottom-0 flex w-full items-center justify-center gap-12 border-t border-lightGray bg-white px-40 py-16">
+        <button onClick={handleNewContent}>
+          <Refresh width={32} height={32} />
+        </button>
+        <button
+          className={cn(
+            commonStyles.cta,
+            'h-48 w-200 justify-center rounded-12 text-18 font-semibold',
+          )}
+          onClick={handleSubmit}
         >
-          {USERNAMES.map(username => (
-            <div key={username} className={styles.username}>
-              <RadioGroupItem
-                id={username}
-                className="size-16 border-black text-black"
-                value={username}
-              />
-              <label htmlFor={username} className="cursor-pointer">
-                {username}
-              </label>
-            </div>
-          ))}
-        </RadioGroup>
-
-        <div className="flex items-center gap-12">
-          <button onClick={handleNewContent}>
-            <Refresh width={32} height={32} />
-          </button>
-          <button
-            className={cn(
-              commonStyles.cta,
-              'h-48 w-200 justify-center rounded-12 text-18 font-semibold',
-            )}
-            onClick={handleSubmit}
-          >
-            기록하기
-          </button>
-        </div>
+          기록하기
+        </button>
       </footer>
 
       <Toaster />

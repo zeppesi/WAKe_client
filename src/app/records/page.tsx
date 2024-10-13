@@ -3,7 +3,7 @@ import Header from './components/Header';
 import RecordList from './components/RecordList';
 
 const Records = () => (
-  <main className="pt-170">
+  <main className="pt-198">
     <div className="fixed left-0 top-0 w-full">
       <Header />
       <Calendar />
