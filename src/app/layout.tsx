@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 import { cn } from '@/styles/utils';
 import { notoSansKR } from '@/styles/fonts';
 import styles from '@/styles/common.module.css';
+import { AuthManager } from './AuthManager';
 
 export const metadata: Metadata = {
   title: 'WAKe',
@@ -20,7 +21,9 @@ export default function RootLayout({
     <html lang="ko">
       <body className={notoSansKR.className}>
         <div className={cn(styles.layoutWidth, 'mx-auto')}>
-          <QueryProvider>{children}</QueryProvider>
+          <AuthManager>
+            <QueryProvider>{children}</QueryProvider>
+          </AuthManager>
         </div>
       </body>
     </html>

@@ -8,10 +8,12 @@ import Night from '@/assets/svgs/night.svg';
 import { cookies } from 'next/headers';
 
 const Home = () => {
-  const isLogined = !!cookies().get('access');
+  const isAuthenticated = !!cookies().get(
+    process.env.NEXT_PUBLIC_JWT_TOKEN_KEY ?? '',
+  );
   return (
     <main className="flex min-h-screen flex-col items-center bg-gradient-to-r from-[#C8F7FD] via-[#F3FFD9] to-[#FFFFFF] p-24">
-      {isLogined ? (
+      {isAuthenticated ? (
         <>
           <p className="mt-170 text-center text-28 font-semibold">
             자신의 감각을
@@ -65,7 +67,7 @@ const Home = () => {
 
           <a
             href={
-              process.env.NEXT_PUBLIC_API_BASE_URL + '/social/kakao/getcode/'
+              process.env.NEXT_PUBLIC_API_BASE_URL + '/accounts/login/kakao'
             }
           >
             <img className="w-240" src={kakaoLogin.src} alt="카카오 로그인" />

@@ -1,4 +1,3 @@
-import { USERNAMES } from '@/constants';
 import api from '@/api';
 import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
@@ -9,15 +8,11 @@ export const INPUT_MAX_LENGTH = 100;
 
 export const useRecordForm = () => {
   const [input, setInput] = useState<string>('');
-  const [username, setUsername] = useState<(typeof USERNAMES)[number]>(
-    USERNAMES[0],
-  );
 
   const { mutateAsync: createRecord } = useMutation({
     mutationFn: async (contentId: number) => {
-      await api.post('/records/records/create/', {
+      await api.post('/records/', {
         content_id: contentId,
-        username,
         text: input,
       });
     },
@@ -82,8 +77,6 @@ export const useRecordForm = () => {
 
   return {
     input,
-    username,
-    setUsername,
     remainingSeconds,
     isTimerEnd,
     exceedsMaxLength,
