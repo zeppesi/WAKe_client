@@ -8,7 +8,9 @@ import Night from '@/assets/svgs/night.svg';
 import { cookies } from 'next/headers';
 
 const Home = () => {
-  const isAuthenticated = !!cookies().get('access');
+  const isAuthenticated = !!cookies().get(
+    process.env.NEXT_PUBLIC_JWT_TOKEN_KEY ?? '',
+  );
   return (
     <main className="flex min-h-screen flex-col items-center bg-gradient-to-r from-[#C8F7FD] via-[#F3FFD9] to-[#FFFFFF] p-24">
       {isAuthenticated ? (
@@ -64,7 +66,9 @@ const Home = () => {
           </p>
 
           <a
-            href={process.env.NEXT_PUBLIC_API_BASE_URL + '/accounts/login/kakao'}
+            href={
+              process.env.NEXT_PUBLIC_API_BASE_URL + '/accounts/login/kakao'
+            }
           >
             <img className="w-240" src={kakaoLogin.src} alt="카카오 로그인" />
           </a>
