@@ -64,7 +64,7 @@ const Home = () => {
           </p>
 
           <a
-            href={process.env.NEXT_PUBLIC_API_BASE_URL + '/social/kakao/login/'}
+            href={process.env.NEXT_PUBLIC_API_BASE_URL + '/accounts/login/kakao'}
           >
             <img className="w-240" src={kakaoLogin.src} alt="카카오 로그인" />
           </a>

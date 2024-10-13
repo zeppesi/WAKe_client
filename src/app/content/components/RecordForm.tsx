@@ -9,6 +9,7 @@ import { cn } from '@/styles/utils';
 import commonStyles from '@/styles/common.module.css';
 import styles from '../page.module.css';
 import { useContent } from '../hooks/useContent';
+import Refresh from '@/assets/svgs/refresh.svg';
 
 const RecordForm = () => {
   const { content, fetchNewContent } = useContent();
@@ -44,26 +45,11 @@ const RecordForm = () => {
         {content?.text}
       </p>
 
-      <button
-        className={cn(
-          commonStyles.cta,
-          'h-52 w-180 justify-center rounded-32 text-20 font-bold active:scale-95',
-        )}
-        onClick={handleNewContent}
-      >
-        다른 질문 받기
-      </button>
-
-      <div className="my-20 flex w-full items-center justify-center rounded-12 bg-lightGray px-12 py-8 text-28 font-extrabold text-red">
+      <div className="my-20 flex w-full items-center justify-center rounded-12 px-12 py-8 text-28 font-extrabold text-red">
         {isTimerEnd ? '지금 떠오른 그 단어를 던져요' : remainingSeconds}
       </div>
 
-      <div className="flex w-full flex-col gap-8">
-        <span
-          className={cn('self-end text-14', exceedsMaxLength && 'text-red')}
-        >
-          {input.length}/{INPUT_MAX_LENGTH}
-        </span>
+      <div className="relative flex w-full flex-col gap-8">
         <textarea
           id="textarea"
           className={cn(
@@ -75,6 +61,14 @@ const RecordForm = () => {
           onChange={handleInputChange}
           onBlur={handleInputBlur}
         />
+        <span
+          className={cn(
+            'absolute bottom-8 right-12 self-end text-14',
+            exceedsMaxLength && 'text-red',
+          )}
+        >
+          {input.length}/{INPUT_MAX_LENGTH}
+        </span>
       </div>
 
       <footer className="fixed bottom-0 flex h-120 w-full flex-col items-center justify-center gap-12 border-t border-lightGray bg-white px-40">
@@ -100,15 +94,20 @@ const RecordForm = () => {
           ))}
         </RadioGroup>
 
-        <button
-          className={cn(
-            commonStyles.cta,
-            'h-56 w-full max-w-1000 justify-center rounded-12 text-24 font-bold',
-          )}
-          onClick={handleSubmit}
-        >
-          기록하기
-        </button>
+        <div className="flex items-center gap-12">
+          <button onClick={handleNewContent}>
+            <Refresh width={32} height={32} />
+          </button>
+          <button
+            className={cn(
+              commonStyles.cta,
+              'h-48 w-200 justify-center rounded-12 text-18 font-semibold',
+            )}
+            onClick={handleSubmit}
+          >
+            기록하기
+          </button>
+        </div>
       </footer>
 
       <Toaster />
