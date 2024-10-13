@@ -10,7 +10,7 @@ export const useContent = () => {
   const { data, refetch } = useQuery<Content>({
     queryKey: ['content'],
     queryFn: async () => {
-      const res = await api('/records/contents/random/', {
+      const res = await api('/records/content/random/', {
         params: idRef.current === null ? {} : { prev: idRef.current },
       });
       return res.data;
